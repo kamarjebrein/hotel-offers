@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Offers</title>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/4.0.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <div class="container" style="background-color: whitesmoke">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Hotel Name</th>
+                        <th>City</th>
+                        <th>Star Rating</th>
+                        <th>Saving Percentage</th>
+                        <th>Offered Price</th>
+                        <th>Original Price</th>
+                        <th>Has VIP Access</th>
+                        <th>Guest Review Rating</th>
+                        <th>Information Site URL</th>
+                        <th>Search Result URL</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div th:if="${not #lists.isEmpty(hotelOffers)}">
+                        <tr th:each="offer : ${hotelOffers}">
+                            <td><img th:src="${offer.imageUrl}"></td>
+                            <td th:text="${offer.hotelName}"></td>
+                            <td th:text="${offer.cityName}"></td>
+                            <td th:text="${offer.starRating}"></td>
+                            <td th:text="'-' + ${offer.savingPercentage} + '%'"></td>
+                            <td th:text="${offer.offeredPricePerNight}"></td>
+                            <td th:text="${offer.originalPricePerNight}"></td>
+                            <td th:text="${offer.hasVipAccess}"></td>
+                            <td th:text="${offer.guestReviewRating}"></td>
+                            <td><a th:href="${offer.infoSiteUrl}"><span th:text="${offer.infoSiteUrl}"></span></a></td>
+                            <td><a th:href="${offer.searchResultUrl}"><span
+                                    th:text="${offer.searchResultUrl}"></span></a></td>
+                        </tr>
+                    </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
